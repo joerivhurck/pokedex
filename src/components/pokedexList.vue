@@ -1,3 +1,7 @@
+<script setup lang="ts">
+import ListItems from './listItems.vue'
+</script>
+
 <template>
   <div class="pokedex-list">
     <div class="frame">
@@ -16,8 +20,12 @@
       </div>
     </div>
     <div class="list">
-      <div class="row">
-        <img class="list-item" src="../assets/image.png" alt="" />
+      <div class="wrap-pokemons">
+        <ListItems icon-filename="bulbasaur.png"></ListItems>
+        <ListItems icon-filename="bulbasaur.png"></ListItems>
+        <ListItems icon-filename="bulbasaur.png"></ListItems>
+        <ListItems icon-filename="bulbasaur.png"></ListItems>
+        <ListItems icon-filename="bulbasaur.png"></ListItems>
       </div>
     </div>
   </div>
@@ -30,7 +38,7 @@
   height: 640px;
   padding: 4px;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: flex-end;
   flex-shrink: 1;
   background: var(--identity-primary, #dc0a2d);
 }
@@ -117,42 +125,20 @@
   width: 16px;
   height: 16px;
 }
-
+.wrap-pokemons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
 .list {
   display: flex;
   padding: 24px 12px 0px 12px;
   flex-direction: column;
   align-items: flex-start;
-  gap: 8px;
   flex: 1 0 0;
-  align-self: stretch;
-
   border-radius: 8px;
   background: var(--grayscale-white, #fff);
-
   /* Inner Shadow/2 dp */
   box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.25) inset;
-}
-
-.row {
-  display: flex;
-  align-items: flex-start;
-  gap: 8px;
-  align-self: stretch;
-}
-
-.list-item {
-  display: flex;
-  width: 104px;
-  height: 108px;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
-
-  border-radius: 8px;
-  background: var(--grayscale-white, #fff);
-
-  /* Drop Shadow/2 dp */
-  box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.2);
 }
 </style>

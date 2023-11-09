@@ -1,10 +1,17 @@
 <script setup lang="ts">
 import { RouterView } from 'vue-router'
+import { usePokemons } from './services/pokemon.service'
+import { onMounted } from 'vue'
+const { fetchPokemons } = usePokemons()
+
+onMounted(() => {
+  fetchPokemons()
+})
 
 </script>
 
 <template>
-<RouterView />
+  <RouterView />
 </template>
 
 <style scoped>

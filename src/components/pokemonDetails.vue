@@ -1,6 +1,5 @@
 <script setup lang="ts">
-import { usePokemons } from '@/services/pokemon.service'
-const { pokemons } = usePokemons()
+
 </script>
 <template>
   <div class="Pokemon-details">
@@ -18,7 +17,7 @@ const { pokemons } = usePokemons()
   width: 360px;
   height: 640px;
   padding: 4px;
-  flex-direction: column;
+  flex-direction: row;
   align-items: flex-start;
   flex-shrink: 0;
   background: var(--grayscale-wireframe, #b8b8b8);
