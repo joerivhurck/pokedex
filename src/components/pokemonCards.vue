@@ -1,10 +1,10 @@
 <script setup lang="ts">
-import { defineProps, ref } from 'vue'
+import { ref } from 'vue'
 import { usePokemons } from '@/services/pokemon.service'
 const { pokemons } = usePokemons()
 
 const id = ref('#999')
-const pokemonName = ref(pokemons.value[0])
+const pokemonName = ref("bal")
 
 const props = defineProps({
   iconFilename: String
