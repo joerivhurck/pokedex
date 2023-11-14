@@ -10,8 +10,10 @@ import pokemonCards from './pokemonCards.vue'
         <div class="header text-white text-2xl font-bold">Pokédex</div>
       </div>
       <div class="filters flex items-center gap-4 self-stretch">
-        <div class="searchbar bg-white shadow-inner shadow-medium rounded-2xl flex pr-4 py-2 pl-3 gap-2 items-center flex-1">
-          <img class="search w-4 h-4" src="../assets/search.svg" alt="" />
+        <div
+          class="searchbar bg-white shadow-inner shadow-medium rounded-2xl flex pr-4 py-2 pl-3 gap-2 items-center flex-1"
+        >
+          <img class="search h-4 w-4" src="../assets/search.svg" alt="" />
           <div class="search-text text-medium text-xs font-normal">search</div>
         </div>
         <div class="sort-button">
@@ -31,7 +33,6 @@ import pokemonCards from './pokemonCards.vue'
 </template>
 
 <style scoped>
-
 .sort-button {
   display: flex;
   padding: 8px;
