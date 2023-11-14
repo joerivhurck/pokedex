@@ -1,28 +1,42 @@
 <script setup lang="ts">
 import pokemonCards from './pokemonCards.vue'
+import pokeBall from './icons/pokeBall.vue'
+import searchIcon from './icons/searchIcon.vue'
+import sortIcon from './icons/sortIcon.vue'
 </script>
 
 <template>
-  <div class="pokedex-list flex flex-col items-end flex-shrink-1 bg-primary h-screen p-1">
-    <div class="frame flex pt-3 px-3 pb-6 flex-col items-start gap-2 self-stretch">
+  <div class="pokedex-list flex h-screen flex-shrink-0 flex-col items-end bg-primary p-1">
+    <div class="frame flex flex-col items-start gap-2 self-stretch px-3 pb-6 pt-3">
       <div class="title flex items-center gap-4 self-stretch">
-        <img class="pokeball w-6 h-6" src="../assets/pokeball.svg" alt="" />
-        <div class="header text-white text-2xl font-bold">Pokédex</div>
+        <pokeBall/>
+        <div class="header text-2xl font-bold text-white">Pokédex</div>
       </div>
       <div class="filters flex items-center gap-4 self-stretch">
-        <div
-          class="searchbar bg-white shadow-inner shadow-medium rounded-2xl flex pr-4 py-2 pl-3 gap-2 items-center flex-1"
-        >
-          <img class="search h-4 w-4" src="../assets/search.svg" alt="" />
-          <div class="search-text text-medium text-xs font-normal">search</div>
+        <div class="searchbar flex flex-1 items-center gap-2 rounded-2xl bg-white py-2 pl-3 pr-4 shadow-inner shadow-medium">
+          <searchIcon/>
+          <div class="w-full" contenteditable="true">
+          <div class="search-text text-xs font-normal text-medium">search</div>
+        </div>
         </div>
         <div class="sort-button">
-          <img class="sort" src="../assets/sort.svg" alt="" />
+          <sortIcon/>
         </div>
       </div>
     </div>
     <div class="list">
       <div class="wrap-pokemons">
+        <pokemonCards icon-filename="bulbasaur.png"></pokemonCards>
+        <pokemonCards icon-filename="bulbasaur.png"></pokemonCards>
+        <pokemonCards icon-filename="bulbasaur.png"></pokemonCards>
+        <pokemonCards icon-filename="bulbasaur.png"></pokemonCards>
+        <pokemonCards icon-filename="bulbasaur.png"></pokemonCards>
+        <pokemonCards icon-filename="bulbasaur.png"></pokemonCards>
+        <pokemonCards icon-filename="bulbasaur.png"></pokemonCards>
+        <pokemonCards icon-filename="bulbasaur.png"></pokemonCards>
+        <pokemonCards icon-filename="bulbasaur.png"></pokemonCards>
+        <pokemonCards icon-filename="bulbasaur.png"></pokemonCards>
+        <pokemonCards icon-filename="bulbasaur.png"></pokemonCards>
         <pokemonCards icon-filename="bulbasaur.png"></pokemonCards>
         <pokemonCards icon-filename="bulbasaur.png"></pokemonCards>
         <pokemonCards icon-filename="bulbasaur.png"></pokemonCards>
@@ -50,11 +64,13 @@ import pokemonCards from './pokemonCards.vue'
   width: 16px;
   height: 16px;
 }
+
 .wrap-pokemons {
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
 }
+
 .list {
   display: flex;
   padding: 24px 12px 0px 12px;
