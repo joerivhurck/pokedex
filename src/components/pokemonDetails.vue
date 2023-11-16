@@ -2,11 +2,12 @@
 import arrowBack from './icons/arrowBack.vue'
 import chevronLeft from './icons/chevronLeft.vue'
 import chevronRight from './icons/chevronRight.vue'
-import pokeBall from './icons/pokeBall.vue'
+import backgroudPokeball from './icons/backgroudPokeball.vue'
+import detailsCard from './detailsCard.vue'
 </script>
 <template>
   <div class="Pokemon-details flex h-screen shrink-0 flex-col items-start bg-[#b8b8b8] p-1">
-    <pokeBall/>
+    <backgroudPokeball class="absolute right-0 top-0 p-2 pr-2" style="z-index: 1" />
     <div class="title flex w-full items-center gap-2 px-5 pb-6 pt-5">
       <arrowBack />
       <div class="pokemon-name flex w-full font-poppins text-2xl font-bold text-white">
@@ -16,9 +17,10 @@ import pokeBall from './icons/pokeBall.vue'
     </div>
     <div class="image flex w-full flex-row items-center justify-between px-5 py-4">
       <chevronLeft />
-      <img src="../assets/sprites/bulbasaur.png" alt="" />
+      <img src="../assets/sprites/bulbasaur.png" alt="" style="z-index: 2" />
       <chevronRight />
     </div>
+    <detailsCard />
   </div>
 </template>
 
