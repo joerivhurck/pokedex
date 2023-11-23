@@ -6,7 +6,7 @@ import backgroudPokeball from './icons/backgroudPokeball.vue'
 import detailsCard from './detailsCard.vue'
 </script>
 <template>
-  <div class="Pokemon-details flex h-screen shrink-0 flex-col items-start bg-[#b8b8b8] p-1">
+  <div class="Pokemon-details flex h-screen shrink-0 flex-col items-start bg-wire p-1">
     <backgroudPokeball class="absolute right-0 top-0 p-2 pr-2" style="z-index: 1" />
     <div class="title flex w-full items-center gap-2 px-5 pb-6 pt-5">
       <arrowBack />
@@ -15,9 +15,9 @@ import detailsCard from './detailsCard.vue'
       </div>
       <div class="pokemon-id font-poppins text-xs font-bold text-white">#999</div>
     </div>
-    <div class="image flex w-full flex-row items-center justify-between px-5 py-4">
+    <div class="image flex h-36 w-full flex-row items-center justify-between px-5 py-4">
       <chevronLeft />
-      <img src="../assets/sprites/bulbasaur.png" alt="" style="z-index: 2" />
+      <img class=" mt-16" src="../assets/sprites/bulbasaur.png" alt="" style="z-index: 3" />
       <chevronRight />
     </div>
     <detailsCard />
