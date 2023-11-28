@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import typeChips from './typeChips.vue'
+import framesDetails from './framesDetails.vue';
 </script>
 
 <template>
@@ -10,8 +11,11 @@ import typeChips from './typeChips.vue'
       <typeChips :pokemonType="'type'" />
       <typeChips :pokemonType="'type'" />
     </div>
-    <div class="header flex justify-center self-stretch text-sm/4 text-wire font-poppins font-bold ">
-       About
+    <div class="header flex justify-center self-stretch font-poppins text-sm/4 font-bold text-wire">
+      About
+    </div>
+    <div class="atribute flex items-start self-stretch">
+      <framesDetails/>
     </div>
   </div>
 </template>
