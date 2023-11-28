@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { RouterView } from 'vue-router'
+import { RouterView , RouterLink } from 'vue-router'
 import { usePokemons } from './services/pokemon.service'
 import { onMounted } from 'vue'
 const { fetchPokemons } = usePokemons()
@@ -11,6 +11,8 @@ onMounted(() => {
 </script>
 
 <template>
+    <router-link to="/"></router-link>
+    <router-link to="/details"></router-link>
    <RouterView />
 </template>
 
