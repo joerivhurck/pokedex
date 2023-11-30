@@ -1,8 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import { usePokemons } from '@/services/pokemon.service'
 import { useRouter } from 'vue-router'
-const {selectedPokemon} = usePokemons()
 
 const id = ref('#999')
 
