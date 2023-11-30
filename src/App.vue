@@ -2,10 +2,10 @@
 import { RouterView , RouterLink } from 'vue-router'
 import { usePokemons } from './services/pokemon.service'
 import { onMounted } from 'vue'
-const { fetchPokemons } = usePokemons()
+const { fetchRandomPokemons } = usePokemons()
 
 onMounted(() => {
-  fetchPokemons()
+  fetchRandomPokemons()
 })
 
 </script>

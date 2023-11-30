@@ -4,22 +4,24 @@ interface Pokemon {
   name: string
   url: string
 }
-
-const pokemons = ref([])
-
 const url = 'https://pokeapi.co/api/v2/pokemon/'
 
+const selectedPokemon = ref('')
+
+
 const usePokemons = () => {
-  const fetchPokemons = async () => {
+  const fetchRandomPokemons = async () => {
     const response = await fetch(url)
     const json = await response.json()
-    const results = json.results.map((pokemon: Pokemon) => pokemon.name)
-    pokemons.value = results
+    const results = json.results.map((pokemon : Pokemon) => pokemon.name)
+    const randomIndex = Math.floor(Math.random() * results.length)
+    selectedPokemon.value = results[randomIndex]
+    console.log(results[randomIndex])
   }
 
   return {
-    pokemons: readonly(pokemons),
-    fetchPokemons
+    selectedPokemon: readonly(selectedPokemon),
+    fetchRandomPokemons
   }
 }
 
