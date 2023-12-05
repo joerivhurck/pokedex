@@ -1,19 +1,22 @@
 <script setup lang="ts">
-import { RouterView , RouterLink } from 'vue-router'
+import { RouterView, RouterLink } from 'vue-router'
 import { usePokemons } from './services/pokemon.service'
 import { onMounted } from 'vue'
-const { fetchRandomPokemons } = usePokemons()
 
-onMounted(() => {
-  fetchRandomPokemons()
+const { fetchAllPokemons, fetchRandomPokemon, selectRandomPokemon } = usePokemons()
+
+onMounted(async () => {
+  await fetchAllPokemons()
+  await fetchRandomPokemon()
+  await selectRandomPokemon()
+ 
 })
-
 </script>
 
 <template>
-    <router-link to="/"></router-link>
-    <router-link to="/details"></router-link>
-   <RouterView />
+  <router-link to="/"></router-link>
+  <router-link to="/details"></router-link>
+  <RouterView />
 </template>
 
 <style scoped>

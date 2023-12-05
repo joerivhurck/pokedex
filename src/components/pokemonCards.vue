@@ -1,12 +1,11 @@
 <script setup lang="ts">
-import { ref } from 'vue'
-import { useRouter } from 'vue-router'
 
-const id = ref('#999')
+import { useRouter } from 'vue-router'
 
 const props = defineProps<{
   iconFilename: string,
   name : string
+  id : number
 }>()
 
 const router = useRouter()

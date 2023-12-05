@@ -4,8 +4,11 @@ import pokeBall from '@/components/icons/pokeBall.vue'
 import searchIcon from '@/components/icons/searchIcon.vue'
 import sortIcon from '@/components/icons/sortIcon.vue'
 import { usePokemons } from '@/services/pokemon.service'
-import { ref } from 'vue';
-const {selectedPokemon} = usePokemons()
+import {ref} from "vue"
+const {allPokemon} = usePokemons()
+
+
+
 
 </script>
 
@@ -30,15 +33,14 @@ const {selectedPokemon} = usePokemons()
     </div>
     <div class="list">
       <div class="wrap-pokemons">
-        <pokemonCards :name="selectedPokemon" icon-filename="bulbasaur.png"></pokemonCards>
-        <pokemonCards :name="selectedPokemon" icon-filename="bulbasaur.png"></pokemonCards>
-        <pokemonCards :name="selectedPokemon" icon-filename="bulbasaur.png"></pokemonCards>
-        <pokemonCards :name="selectedPokemon" icon-filename="bulbasaur.png"></pokemonCards>
-        <pokemonCards :name="selectedPokemon" icon-filename="bulbasaur.png"></pokemonCards>
-        <pokemonCards :name="selectedPokemon" icon-filename="bulbasaur.png"></pokemonCards>
-        <pokemonCards :name="selectedPokemon" icon-filename="bulbasaur.png"></pokemonCards>
-        <pokemonCards :name="selectedPokemon" icon-filename="bulbasaur.png"></pokemonCards>
-     </div>
+        <pokemonCards
+          v-for="(pokemon, index) in allPokemon"
+          :key="index"
+          :id="index"         
+          :name="pokemon.name"
+          icon-filename="h" 
+        ></pokemonCards>
+      </div>
     </div>
   </div>
 </template>

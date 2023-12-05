@@ -1,5 +1,5 @@
 <script setup lang="ts">
- import weightIcon from './icons/weightIcon.vue';
+
  defineProps<{
   text: String
 }>()
