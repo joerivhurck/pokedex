@@ -3,13 +3,13 @@ import { RouterView, RouterLink } from 'vue-router'
 import { usePokemons } from './services/pokemon.service'
 import { onMounted } from 'vue'
 
-const { fetchAllPokemons, fetchRandomPokemon, selectRandomPokemon } = usePokemons()
+const { fetchAndSelectRandomPokemon } = usePokemons()
 
 onMounted(async () => {
-  await fetchAllPokemons()
-  await fetchRandomPokemon()
-  await selectRandomPokemon()
- 
+  //await fetchAllPokemons()
+  //await fetchRandomPokemon()
+  //await selectRandomPokemon()
+  fetchAndSelectRandomPokemon()
 })
 </script>
 

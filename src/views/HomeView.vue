@@ -1,13 +1,20 @@
 <script setup lang="ts">
-import pokemonCards from '@/components/pokemonCards.vue';
+import pokemonCards from '@/components/pokemonCards.vue'
 import pokeBall from '@/components/icons/pokeBall.vue'
 import searchIcon from '@/components/icons/searchIcon.vue'
 import sortIcon from '@/components/icons/sortIcon.vue'
 import { usePokemons } from '@/services/pokemon.service'
-import {ref} from "vue"
-const {allPokemon} = usePokemons()
+import { ref } from 'vue'
+const { allPokemon ,pokemonId,pokemonName } = usePokemons()
+
+let id = 0
 
 
+const arrayOfPokemon = ref([])
+
+for (let i = 0; i < allPokemon.value.length; i++) {
+  arrayOfPokemon.value.push({ id:id++, name: pokemonName });
+}
 
 
 </script>
@@ -16,29 +23,31 @@ const {allPokemon} = usePokemons()
   <div class="pokedex-list flex h-screen flex-shrink-0 flex-col items-end bg-primary p-1">
     <div class="frame flex flex-col items-start gap-2 self-stretch px-3 pb-6 pt-3">
       <div class="title flex items-center gap-4 self-stretch">
-        <pokeBall/>
+        <pokeBall />
         <div class="header text-2xl font-bold text-white">Pokédex</div>
       </div>
       <div class="filters flex items-center gap-4 self-stretch">
-        <div class="searchbar flex flex-1 items-center gap-2 rounded-2xl bg-white py-2 pl-3 pr-4 shadow-inner shadow-medium">
-          <searchIcon/>
+        <div
+          class="searchbar flex flex-1 items-center gap-2 rounded-2xl bg-white py-2 pl-3 pr-4 shadow-inner shadow-medium"
+        >
+          <searchIcon />
           <div class="w-full" contenteditable="true">
-          <div class="search-text text-xs font-normal text-medium">search</div>
-        </div>
+            <div class="search-text text-xs font-normal text-medium">search</div>
+          </div>
         </div>
         <div class="sort-button">
-          <sortIcon/>
+          <sortIcon />
         </div>
       </div>
     </div>
     <div class="list">
       <div class="wrap-pokemons">
         <pokemonCards
-          v-for="(pokemon, index) in allPokemon"
+        v-for="(pokemon,index) in arrayOfPokemon"
           :key="index"
-          :id="index"         
-          :name="pokemon.name"
-          icon-filename="h" 
+          :name="pokemonName"
+          :id="pokemonId"
+          iconFilename="sprite"
         ></pokemonCards>
       </div>
     </div>
