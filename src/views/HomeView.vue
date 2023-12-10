@@ -5,16 +5,12 @@ import searchIcon from '@/components/icons/searchIcon.vue'
 import sortIcon from '@/components/icons/sortIcon.vue'
 import { usePokemons } from '@/services/pokemon.service'
 import { ref } from 'vue'
-const { allPokemon ,pokemonId,pokemonName } = usePokemons()
-
-let id = 0
+const {arrayOfPokemon ,pokemonId,pokemonName } = usePokemons()
 
 
-const arrayOfPokemon = ref([])
 
-for (let i = 0; i < allPokemon.value.length; i++) {
-  arrayOfPokemon.value.push({ id:id++, name: pokemonName });
-}
+
+
 
 
 </script>
