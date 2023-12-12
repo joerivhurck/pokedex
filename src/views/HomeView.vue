@@ -5,7 +5,7 @@ import searchIcon from '@/components/icons/searchIcon.vue'
 import sortIcon from '@/components/icons/sortIcon.vue'
 import { usePokemons } from '@/services/pokemon.service'
 import { ref } from 'vue'
-const {arrayOfPokemon ,pokemonId,pokemonName } = usePokemons()
+const {allPokemon} = usePokemons()
 
 
 
@@ -39,10 +39,10 @@ const {arrayOfPokemon ,pokemonId,pokemonName } = usePokemons()
     <div class="list">
       <div class="wrap-pokemons">
         <pokemonCards
-        v-for="(pokemon,index) in arrayOfPokemon"
+        v-for="(pokemon,index) in allPokemon"
           :key="index"
-          :name="pokemonName"
-          :id="pokemonId"
+          :name="allPokemon.name"
+          :id="allPokemon.id"
           iconFilename="sprite"
         ></pokemonCards>
       </div>

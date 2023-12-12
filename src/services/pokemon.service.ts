@@ -7,19 +7,18 @@ interface Pokemon {
   sprite: string
 }
 
-interface PokemonList {
-  list : Array<Pokemon>
-}
-let url = 'https://pokeapi.co/api/v2/pokemon/?limit=20&offset=20'
+
+
+const url = 'https://pokeapi.co/api/v2/pokemon/?limit=20&offset=20'
 
 const pokemonId = ref(0)
 const pokemonName = ref('')
-const allPokemon: Ref<PokemonList> = ref([])
+const allPokemon = ref<Pokemon[]>([]);
 const randomPokemon = ref()
 const selectedPokemon = ref([])
 const detailsPokemon = ref()
 const arrayOfPokemon = ref([{ id: pokemonId.value, name: pokemonName.value}])
-let count = ref(0)
+//let count = ref(0)
 
 //const pokemonSprite =  ref("")
 //const  = ref([])
@@ -31,12 +30,24 @@ const usePokemons = () => {
     const results = json.results.map((pokemon: Pokemon) => pokemon)
    
     for(let i = 0;i<results.length;i++){
-      console.log(results[i])
-      url = results[i].url
-      console.log(url)
+      const pokemonUrl = results[i].url
+      //console.log(results[i])
+      //console.log(allPokemon.value)
+      allPokemon.value = pokemonUrl
+      const pokemonResponse = await fetch(pokemonUrl)
+      const pokemonJson = await pokemonResponse.json()
+
+      const pokemonDetails: Pokemon = {
+        name: pokemonJson.name,
+        url: pokemonJson.sprites.front_default,
+        id: pokemonJson.id,
+        sprite: pokemonJson.sprites.front_default,
+      };
+      allPokemon.value.push(pokemonDetails);
+      console.log(pokemonDetails)
     }
-   
-  }
+    console.log(allPokemon.value)
+   }
 
   const fetchRandomPokemon = () => {
     const randomIndex = Math.floor(Math.random() * allPokemon.value.length)
@@ -88,7 +99,6 @@ const usePokemons = () => {
     detailsRandomPokemon,
     fetchAndSelectRandomPokemon,
     makeNewArr,
-    
   }
 }
 
