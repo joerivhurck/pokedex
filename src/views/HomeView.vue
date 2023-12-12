@@ -4,15 +4,7 @@ import pokeBall from '@/components/icons/pokeBall.vue'
 import searchIcon from '@/components/icons/searchIcon.vue'
 import sortIcon from '@/components/icons/sortIcon.vue'
 import { usePokemons } from '@/services/pokemon.service'
-import { ref } from 'vue'
-const {allPokemon} = usePokemons()
-
-
-
-
-
-
-
+const { allPokemon } = usePokemons()
 </script>
 
 <template>
@@ -39,11 +31,11 @@ const {allPokemon} = usePokemons()
     <div class="list">
       <div class="wrap-pokemons">
         <pokemonCards
-        v-for="(pokemon,index) in allPokemon"
+          v-for="(pokemon, index) in allPokemon"
           :key="index"
-          :name="allPokemon.name"
-          :id="allPokemon.id"
-          iconFilename="sprite"
+          :name="pokemon.name"
+          :id="pokemon.id"
+          :sprite="pokemon.sprite"
         ></pokemonCards>
       </div>
     </div>

@@ -7,33 +7,19 @@ interface Pokemon {
   sprite: string
 }
 
+const url = 'https://pokeapi.co/api/v2/pokemon/?limit=30&offset=20'
 
-
-const url = 'https://pokeapi.co/api/v2/pokemon/?limit=20&offset=20'
-
-const pokemonId = ref(0)
-const pokemonName = ref('')
-const allPokemon = ref<Pokemon[]>([]);
-const randomPokemon = ref()
-const selectedPokemon = ref([])
-const detailsPokemon = ref()
-const arrayOfPokemon = ref([{ id: pokemonId.value, name: pokemonName.value}])
-//let count = ref(0)
-
-//const pokemonSprite =  ref("")
-//const  = ref([])
+const allPokemon = ref<Pokemon[]>([])
 
 const usePokemons = () => {
   const fetchAllPokemons = async () => {
     const response = await fetch(url)
     const json = await response.json()
-    const results = json.results.map((pokemon: Pokemon) => pokemon)
-   
-    for(let i = 0;i<results.length;i++){
+    const results = json.results
+
+    for (let i = 0; i < results.length; i++) {
       const pokemonUrl = results[i].url
-      //console.log(results[i])
-      //console.log(allPokemon.value)
-      allPokemon.value = pokemonUrl
+
       const pokemonResponse = await fetch(pokemonUrl)
       const pokemonJson = await pokemonResponse.json()
 
@@ -41,65 +27,26 @@ const usePokemons = () => {
         name: pokemonJson.name,
         url: pokemonJson.sprites.front_default,
         id: pokemonJson.id,
-        sprite: pokemonJson.sprites.front_default,
-      };
-      allPokemon.value.push(pokemonDetails);
-      console.log(pokemonDetails)
+        sprite: pokemonJson.sprites.front_default
+      }
+      allPokemon.value.push(pokemonDetails)
     }
-    console.log(allPokemon.value)
-   }
-
-  const fetchRandomPokemon = () => {
-    const randomIndex = Math.floor(Math.random() * allPokemon.value.length)
-    randomPokemon.value = allPokemon.value[randomIndex]
-    pokemonName.value = randomPokemon.value.name
-    console.log(pokemonName.value)
+    shuffleArray(allPokemon.value)
   }
 
-  const detailsRandomPokemon = async () => {
-    const response = await fetch(randomPokemon.value.url)
-    const json = await response.json()
-    detailsPokemon.value = json
-    pokemonId.value = detailsPokemon.value.id
-    //console.log(pokemonId.value)
-  }
-
-  const makeNewArr = () => {
-   
-    for (let i = 0; i < allPokemon.value.length; i++) {
-      
-      arrayOfPokemon.value.push({ id: pokemonId.value, name: pokemonName.value })
+  function shuffleArray(array: Pokemon[]) {
+    for (let i = array.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1))
+      ;[array[i], array[j]] = [array[j], array[i]]
     }
-    
   }
 
-  const fetchAndSelectRandomPokemon = async () => {
-    await fetchAllPokemons()
-    await fetchRandomPokemon()
-    await detailsRandomPokemon()
-  }
-  
- /* function loopArr(){
-    for(let i = 0;i<allPokemon.value.length;i++){
-      fetchAndSelectRandomPokemon()
-      console.log(arrayOfPokemon)
-    }
-  }*/
+ 
 
   return {
-    detailsPokemon,
     allPokemon,
-    randomPokemon,
-    selectedPokemon,
-    pokemonName,
-    pokemonId,
-    arrayOfPokemon,
-    fetchAllPokemons,
-    fetchRandomPokemon,
-    detailsRandomPokemon,
-    fetchAndSelectRandomPokemon,
-    makeNewArr,
-  }
+    fetchAllPokemons
+   }
 }
 
 export { usePokemons }

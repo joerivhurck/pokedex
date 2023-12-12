@@ -3,7 +3,7 @@
 import { useRouter } from 'vue-router'
 
 const props = defineProps<{
-  iconFilename: string,
+  sprite : string,
   name : string
   id : number
 }>()
@@ -14,9 +14,6 @@ function navDetails() {
   router.push('/details')
 }
 
-function getImageUrl() {
-  return new URL(`../assets/sprites/${props.iconFilename}`, import.meta.url).toString()
-}
 </script>
 
 <template>
@@ -35,7 +32,7 @@ function getImageUrl() {
       >
        {{ name}}
       </div>
-      <img class="silhoutte absolute mt-4 h-[72px] w-[72px]" :src="getImageUrl()" alt="" />
+      <img class="silhoutte absolute mt-4 h-[72px] w-[72px]" :src="sprite" alt="" />
     </div>
   </div>
 </template>
