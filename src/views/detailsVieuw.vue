@@ -4,8 +4,15 @@ import chevronLeft from '@/components/icons/chevronLeft.vue'
 import chevronRight from '@/components/icons/chevronRight.vue'
 import backgroudPokeball from '@/components/icons/backgroudPokeball.vue'
 import detailsCard from '@/components/detailsCard.vue'
+import { useRoute } from 'vue-router'
 import { usePokemons } from '@/services/pokemon.service'
-const { allPokemon } = usePokemons()
+
+const { allPokemon } = usePokemons();
+const router = useRoute();
+
+console.log(allPokemon);
+console.log(router.params.name);
+
 </script>
 <template>
   <div class="Pokemon-details flex h-screen shrink-0 flex-col items-start bg-wire p-1">

@@ -7,7 +7,11 @@ const routes = [
     name: 'home',
     component: HomeView
   },
-  { path: '/details', component: () => import('@/views/detailsVieuw.vue') }
+  {
+    path: '/details/:name',
+    name: 'pokemonDetails',
+    component: () => import('@/views/detailsVieuw.vue')
+  }
 ]
 
 const router = createRouter({

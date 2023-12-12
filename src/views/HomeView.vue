@@ -4,7 +4,14 @@ import pokeBall from '@/components/icons/pokeBall.vue'
 import searchIcon from '@/components/icons/searchIcon.vue'
 import sortIcon from '@/components/icons/sortIcon.vue'
 import { usePokemons } from '@/services/pokemon.service'
+import { useRouter } from 'vue-router'
 const { allPokemon } = usePokemons()
+const router = useRouter()
+
+function navDetails(name:string){
+  router.push({ name: 'pokemonDetails', params: { name: name }})
+}
+
 </script>
 
 <template>
@@ -31,6 +38,7 @@ const { allPokemon } = usePokemons()
     <div class="list">
       <div class="wrap-pokemons">
         <pokemonCards
+        @click="navDetails(pokemon.name)"
           v-for="(pokemon, index) in allPokemon"
           :key="index"
           :name="pokemon.name"

@@ -1,25 +1,16 @@
 <script setup lang="ts">
-
-import { useRouter } from 'vue-router'
-
-const props = defineProps<{
+ defineProps<{
   sprite : string,
   name : string
   id : number
 }>()
 
-const router = useRouter()
-
-function navDetails() {
-  router.push('/details')
-}
 
 </script>
 
 <template>
   <div class="row flex items-start gap-2 self-stretch">
     <div
-      @click="navDetails"
       class="item-list flex h-[108px] w-[104px] cursor-pointer flex-col items-center justify-between rounded-lg  bg-white drop-shadow"
     >
       <div
