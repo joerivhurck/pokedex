@@ -6,13 +6,22 @@ import backgroudPokeball from '@/components/icons/backgroudPokeball.vue'
 import detailsCard from '@/components/detailsCard.vue'
 import { useRoute } from 'vue-router'
 import { usePokemons } from '@/services/pokemon.service'
+import { ref } from 'vue'
+const { allPokemon } = usePokemons()
+const router = useRoute()
 
-const { allPokemon } = usePokemons();
-const router = useRoute();
+const paramsName = router.params.name
+const pokemonName = ref('')
+const pokemonId = ref()
+const pokemonSprite = ref('')
 
-console.log(allPokemon);
-console.log(router.params.name);
-
+for (let i = 0; i < allPokemon.value.length; i++) {
+  if (allPokemon.value[i].name === paramsName) {
+    pokemonName.value = allPokemon.value[i].name
+    pokemonId.value = allPokemon.value[i].id
+    pokemonSprite.value = allPokemon.value[i].sprite
+  }
+}
 </script>
 <template>
   <div class="Pokemon-details flex h-screen shrink-0 flex-col items-start bg-wire p-1">
@@ -20,13 +29,13 @@ console.log(router.params.name);
     <div class="title flex w-full items-center gap-2 px-5 pb-6 pt-5">
       <arrowBack />
       <div class="pokemon-name flex w-full font-poppins text-2xl font-bold text-white">
-        Pokémon Name
+        {{ pokemonName }}
       </div>
-      <div class="pokemon-id font-poppins text-xs font-bold text-white">#999</div>
+      <div class="pokemon-id font-poppins text-xs font-bold text-white">#{{ pokemonId }}</div>
     </div>
     <div class="image flex h-36 w-full flex-row items-center justify-between px-5 py-4">
       <chevronLeft />
-      <img class=" mt-16" src="../assets/sprites/bulbasaur.png" alt="" style="z-index: 3" />
+      <img class="mt-16 w-56 h-56" :src="pokemonSprite" alt="" style="z-index: 3" />
       <chevronRight />
     </div>
     <detailsCard />

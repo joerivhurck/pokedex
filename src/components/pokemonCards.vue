@@ -23,7 +23,7 @@
       >
        {{ name}}
       </div>
-      <img class="silhoutte absolute mt-4 h-[72px] w-[72px]" :src="sprite" alt="" />
+      <img class="silhoutte absolute" :src="sprite" alt="" />
     </div>
   </div>
 </template>

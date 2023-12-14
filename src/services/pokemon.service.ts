@@ -1,5 +1,8 @@
 import { ref } from 'vue'
 
+
+
+
 interface Pokemon {
   name: string
   url: string
@@ -16,7 +19,7 @@ const usePokemons = () => {
     const response = await fetch(url)
     const json = await response.json()
     const results = json.results
-
+   
     for (let i = 0; i < results.length; i++) {
       const pokemonUrl = results[i].url
 
@@ -29,6 +32,7 @@ const usePokemons = () => {
         id: pokemonJson.id,
         sprite: pokemonJson.sprites.front_default
       }
+      
       allPokemon.value.push(pokemonDetails)
     }
     shuffleArray(allPokemon.value)
