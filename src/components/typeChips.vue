@@ -1,6 +1,6 @@
 <script setup lang="ts">
 defineProps<{
-  pokemonType: String
+  pokemonType: string
 }>()
 </script>
 

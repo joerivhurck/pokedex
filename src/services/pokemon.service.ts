@@ -8,11 +8,16 @@ interface Pokemon {
   url: string
   id: number
   sprite: string
+  types : string
+  weight : number
+  height : number
+  stats : string
 }
 
 const url = 'https://pokeapi.co/api/v2/pokemon/?limit=30&offset=20'
 
 const allPokemon = ref<Pokemon[]>([])
+
 
 const usePokemons = () => {
   const fetchAllPokemons = async () => {
@@ -30,10 +35,16 @@ const usePokemons = () => {
         name: pokemonJson.name,
         url: pokemonJson.sprites.front_default,
         id: pokemonJson.id,
-        sprite: pokemonJson.sprites.front_default
-      }
+        sprite: pokemonJson.sprites.front_default,
+        types : pokemonJson.types,
+        weight : pokemonJson.weight,
+        height : pokemonJson.height,
+        stats : pokemonJson.stats
       
+      }
+      console.log(allPokemon.value)
       allPokemon.value.push(pokemonDetails)
+      
     }
     shuffleArray(allPokemon.value)
   }
