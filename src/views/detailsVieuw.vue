@@ -13,9 +13,11 @@ import deviderFrames from '@/components/deviderFrames.vue'
 import labelStats from '@/components/labelStats.vue'
 import dataStats from '@/components/dataStats.vue'
 import chartStats from '@/components/chartStats.vue'
+import AbiltyMoves from '@/components/AbiltyMoves.vue'
 import { useRoute } from 'vue-router'
 import { usePokemons } from '@/services/pokemon.service'
-import { ref } from 'vue'
+import { computed, ref } from 'vue'
+
 const { allPokemon } = usePokemons()
 const router = useRoute()
 
@@ -27,20 +29,28 @@ const pokemonWeight = ref()
 const pokemonHeight = ref()
 
 const pokemonStats = ref()
+const pokemonMoves = ref()
 
 for (let i = 0; i < allPokemon.value.length; i++) {
   if (allPokemon.value[i].name === paramsName) {
     const selectedPokemon = allPokemon.value[i]
+
     pokemonName.value = selectedPokemon.name
     pokemonId.value = selectedPokemon.id
     pokemonSprite.value = selectedPokemon.sprite
     pokemonWeight.value = selectedPokemon.weight
     pokemonHeight.value = selectedPokemon.height
     pokemonStats.value = selectedPokemon.stats
+    pokemonMoves.value = selectedPokemon.moves
 
+    console.log(pokemonMoves.value)
     pokemonWeight.value.toString()
   }
 }
+
+const filterdMoves = computed(() => {
+  return pokemonMoves.value.slice(0, 2)
+})
 </script>
 <template>
   <div class="Pokemon-details flex h-screen shrink-0 flex-col items-start bg-wire p-1">
@@ -87,8 +97,11 @@ for (let i = 0; i < allPokemon.value.length; i++) {
         <deviderFrames />
         <framesDetails>
           <div class="flex h-8 flex-col">
-            <div class="font-poppins text-s/4 font-normal">abilty1</div>
-            <div class="font-poppins text-s/4 font-normal">abilty2</div>
+            <AbiltyMoves
+              v-for="(move, index) in filterdMoves"
+              :key="index"
+              :abilty="move.move.name"
+            ></AbiltyMoves>
           </div>
           <underFrame :text="'moves'"></underFrame>
         </framesDetails>
@@ -114,11 +127,11 @@ for (let i = 0; i < allPokemon.value.length; i++) {
         </div>
         <deviderFrames />
         <div class="flex flex-col items-start pl-0">
-          <dataStats v-for="(stat,index) in pokemonStats"
-          :key="index"
-          :data="stat.base_stat"
+          <dataStats
+            v-for="(stat, index) in pokemonStats"
+            :key="index"
+            :data="stat.base_stat"
           ></dataStats>
-       
         </div>
         <div class="chart items start flex flex-col">
           <chartStats />
@@ -147,7 +160,7 @@ for (let i = 0; i < allPokemon.value.length; i++) {
   flex: 1 0 0;
 }
 
-.chart{
-  flex: 1 0 0;  
+.chart {
+  flex: 1 0 0;
 }
 </style>

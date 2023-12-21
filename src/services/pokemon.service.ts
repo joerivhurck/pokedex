@@ -3,8 +3,10 @@ import { ref } from 'vue'
 
 interface Stat {
   base_stat: number;
-  effort: number;
-  stat: Ability;
+}
+
+interface Move {
+  move: string;
 }
 
 
@@ -17,6 +19,7 @@ interface Pokemon {
   weight : number
   height : number
   stats : Stat
+  moves : Move
 }
 
 
@@ -24,7 +27,7 @@ interface Pokemon {
 const url = 'https://pokeapi.co/api/v2/pokemon/?limit=30&offset=20'
 
 const allPokemon = ref<Pokemon[]>([])
-
+const moveNames = ref<string[]>([])
 
 const usePokemons = () => {
   const fetchAllPokemons = async () => {
@@ -46,11 +49,10 @@ const usePokemons = () => {
         types : pokemonJson.types,
         weight : pokemonJson.weight,
         height : pokemonJson.height,
-        stats : pokemonJson.stats
+        stats : pokemonJson.stats,
+        moves : pokemonJson.moves
       }
-      //console.log(pokemonJson.stats)
       allPokemon.value.push(pokemonDetails)
-      
     }
     shuffleArray(allPokemon.value)
   }
@@ -66,7 +68,8 @@ const usePokemons = () => {
 
   return {
     allPokemon,
-    fetchAllPokemons
+    fetchAllPokemons,
+    moveNames,
    }
 }
 
