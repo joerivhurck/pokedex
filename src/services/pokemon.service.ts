@@ -1,6 +1,11 @@
 import { ref } from 'vue'
 
 
+interface Stat {
+  base_stat: number;
+  effort: number;
+  stat: Ability;
+}
 
 
 interface Pokemon {
@@ -11,8 +16,10 @@ interface Pokemon {
   types : string
   weight : number
   height : number
-  stats : string
+  stats : Stat
 }
+
+
 
 const url = 'https://pokeapi.co/api/v2/pokemon/?limit=30&offset=20'
 
@@ -40,9 +47,8 @@ const usePokemons = () => {
         weight : pokemonJson.weight,
         height : pokemonJson.height,
         stats : pokemonJson.stats
-      
       }
-      console.log(allPokemon.value)
+      //console.log(pokemonJson.stats)
       allPokemon.value.push(pokemonDetails)
       
     }
