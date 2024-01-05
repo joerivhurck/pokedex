@@ -1,6 +1,4 @@
 import { ref } from 'vue'
-
-
 interface Stat {
   base_stat: number;
 }
@@ -9,17 +7,26 @@ interface Move {
   move: string;
 }
 
+interface Ability {
+  name: string;
+ }
+
+interface Type {
+  slot: number;
+  type: Ability;
+}
 
 interface Pokemon {
   name: string
   url: string
   id: number
   sprite: string
-  types : string
+  ///types : string
   weight : number
   height : number
   stats : Stat
   moves : Move
+  types : Type
 }
 
 
@@ -46,12 +53,13 @@ const usePokemons = () => {
         url: pokemonJson.sprites.front_default,
         id: pokemonJson.id,
         sprite: pokemonJson.sprites.front_default,
-        types : pokemonJson.types,
         weight : pokemonJson.weight,
         height : pokemonJson.height,
         stats : pokemonJson.stats,
-        moves : pokemonJson.moves
+        moves : pokemonJson.moves,  
+        types : pokemonJson.types
       }
+      
       allPokemon.value.push(pokemonDetails)
     }
     shuffleArray(allPokemon.value)

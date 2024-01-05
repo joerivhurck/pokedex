@@ -18,6 +18,7 @@ import { useRoute } from 'vue-router'
 import { usePokemons } from '@/services/pokemon.service'
 import { computed, ref } from 'vue'
 
+
 const { allPokemon } = usePokemons()
 const router = useRoute()
 
@@ -30,6 +31,8 @@ const pokemonHeight = ref()
 
 const pokemonStats = ref()
 const pokemonMoves = ref()
+const pokemonTypes = ref()
+const typeNames = ref<string[]>([])
 
 for (let i = 0; i < allPokemon.value.length; i++) {
   if (allPokemon.value[i].name === paramsName) {
@@ -42,10 +45,9 @@ for (let i = 0; i < allPokemon.value.length; i++) {
     pokemonHeight.value = selectedPokemon.height
     pokemonStats.value = selectedPokemon.stats
     pokemonMoves.value = selectedPokemon.moves
-
-    console.log(pokemonMoves.value)
+    pokemonTypes.value = selectedPokemon.types
     pokemonWeight.value.toString()
-  }
+   }
 }
 
 const filterdMoves = computed(() => {
@@ -71,8 +73,10 @@ const filterdMoves = computed(() => {
       class="card mt-2 flex h-screen w-full flex-col items-start gap-4 rounded-lg bg-white px-5 pb-5 pt-14"
     >
       <div class="types flex items-start justify-center gap-4 self-stretch pt-1">
-        <typeChips :pokemonType="'type'" />
-        <typeChips :pokemonType="'type'" />
+        <typeChips v-for="(type,index) in pokemonTypes" 
+        :key="index"
+        :pokemonType="type.type.name"
+        ></typeChips>
       </div>
       <div
         class="header flex justify-center self-stretch font-poppins text-sm/4 font-bold text-wire"

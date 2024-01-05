@@ -1,8 +1,8 @@
 <script setup lang="ts">
  defineProps<{
-  sprite : string,
-  name : string
-  id : number
+  sprite : string, //ask bart small s
+  name : String
+  id : Number
 }>()
 
 
